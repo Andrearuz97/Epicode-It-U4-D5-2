@@ -3,11 +3,13 @@ package media.elements;
 public class Video extends MediaElement {
 	private int volume;
 	private int brightness;
+	private int duration;
 
-	public Video(String title, int volume, int brightness) {
+	public Video(String title, int volume, int brightness, int duration) {
 		super(title);
 		this.volume = volume;
 		this.brightness = brightness;
+		this.duration = duration;
 	}
 
 	public int getVolume() {
@@ -26,6 +28,14 @@ public class Video extends MediaElement {
 		this.brightness = brightness;
 	}
 
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
 	public void aumentaLuminosita() {
 		brightness++;
 	}
@@ -37,23 +47,17 @@ public class Video extends MediaElement {
 	}
 
 	@Override
-	public int getDuration() {
-		return 1;
-	}
-
-	@Override
 	public void play() {
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < getDuration(); i++) {
-			for (int j = 0; j < getVolume(); j++) {
+		for (int i = 0; i < duration; i++) {
+			for (int j = 0; j < volume; j++) {
 				sb.append("!");
 			}
-			for (int j = 0; j < getBrightness(); j++) {
+			for (int j = 0; j < brightness; j++) {
 				sb.append("*");
 			}
 			System.out.println(getTitle() + sb.toString());
 			sb.setLength(0);
 		}
 	}
-
 }

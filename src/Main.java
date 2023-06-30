@@ -2,14 +2,15 @@
 /**
  * Questo è il metodo principale (main) dell'applicazione che permette di riprodurre diversi tipi di elementi multimediali.
  * L'applicazione richiede all'utente di inserire il tipo di elemento (audio, video o immagine) e il relativo titolo.
- * Per gli elementi audio, viene richiesto anche il volume, mentre per i video viene richiesto sia il volume che la luminosità.
+ * Per gli elementi audio, viene richiesto il volume e la durata, mentre per i video viene richiesto il volume, la luminosità
+ * e la durata.
  * Una volta che gli elementi sono stati inseriti, vengono memorizzati in un array di elementi multimediali.
  * Successivamente, l'applicazione crea un oggetto MediaPlayer passando l'array di elementi multimediali.
  * L'utente può quindi selezionare un elemento da riprodurre inserendo l'indice corrispondente. Gli elementi vengono riprodotti
  * utilizzando il metodo play() dell'elemento selezionato. Se l'elemento è un'immagine, viene visualizzata la luminosità
  * utilizzando asterischi, mentre se è un elemento audio, viene utilizzato il volume per visualizzare i punti esclamativi.
  * L'utente può inserire 0 per uscire dall'applicazione. NB se non vengono inseriti i 5 elementi non si può procedere alla 
- * lettura dei file.
+ * lettura dei files.
  */
 
 import java.util.Scanner;
@@ -45,6 +46,7 @@ public class Main {
 			switch (type) {
 			case 1:
 				int volume;
+				int audioDuration;
 				do {
 					System.out.println("Inserisci il volume:");
 					while (!scanner.hasNextInt()) {
@@ -54,11 +56,22 @@ public class Main {
 					volume = scanner.nextInt();
 					scanner.nextLine();
 				} while (volume <= 0);
-				mediaElements[i] = new AudioRecording(title, volume);
+				do {
+					System.out.println("Inserisci la durata in secondi:");
+					while (!scanner.hasNextInt()) {
+						System.out.println("Input non valido. Inserisci la durata in secondi:");
+						scanner.next();
+					}
+					audioDuration = scanner.nextInt();
+					scanner.nextLine();
+				} while (audioDuration <= 0);
+				mediaElements[i] = new AudioRecording(title, volume, audioDuration);
 				break;
+
 			case 2:
 				int videoVolume;
 				int brightness;
+				int videoDuration;
 				do {
 					System.out.println("Inserisci il volume:");
 					while (!scanner.hasNextInt()) {
@@ -77,8 +90,18 @@ public class Main {
 					brightness = scanner.nextInt();
 					scanner.nextLine();
 				} while (brightness <= 0);
-				mediaElements[i] = new Video(title, videoVolume, brightness);
+				do {
+					System.out.println("Inserisci la durata in secondi:");
+					while (!scanner.hasNextInt()) {
+						System.out.println("Input non valido. Inserisci la durata in secondi:");
+						scanner.next();
+					}
+					videoDuration = scanner.nextInt();
+					scanner.nextLine();
+				} while (videoDuration <= 0);
+				mediaElements[i] = new Video(title, videoVolume, brightness, videoDuration);
 				break;
+
 			case 3:
 				int imageBrightness;
 				do {
