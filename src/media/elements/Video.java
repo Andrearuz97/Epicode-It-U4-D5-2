@@ -38,24 +38,22 @@ public class Video extends MediaElement {
 
 	@Override
 	public int getDuration() {
-		return 2;
+		return 1;
 	}
 
 	@Override
 	public void play() {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < getDuration(); i++) {
-			for (int j = 0; j < volume; j++) {
+			for (int j = 0; j < getVolume(); j++) {
 				sb.append("!");
 			}
-			System.out.println(getTitle() + sb.toString());
-			sb.setLength(0); // Resetta la StringBuilder
-
-			for (int k = 0; k < brightness; k++) {
+			for (int j = 0; j < getBrightness(); j++) {
 				sb.append("*");
 			}
-			System.out.println(sb.toString());
-			sb.setLength(0); // Resetta la StringBuilder
+			System.out.println(getTitle() + sb.toString());
+			sb.setLength(0);
 		}
 	}
+
 }

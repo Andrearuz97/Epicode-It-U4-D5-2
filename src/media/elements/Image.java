@@ -15,14 +15,12 @@ public class Image extends MediaElement implements Reproducible {
 
 	@Override
 	public void play() {
-		// Implement the play() method for the image
-		String exclamationPoints = "!".repeat(brightness);
-		System.out.println(getTitle() + ": " + exclamationPoints);
+		String asterisks = "*".repeat(brightness);
+		System.out.println(getTitle() + ": " + asterisks);
 	}
 
 	@Override
 	public int getDuration() {
-		// Return a default duration for the image
 		return 0;
 	}
 }

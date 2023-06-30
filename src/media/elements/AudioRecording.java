@@ -35,11 +35,11 @@ public class AudioRecording extends MediaElement {
 	public void play() {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < getDuration(); i++) {
-			for (int j = 0; j < volume; j++) {
+			for (int j = 0; j < getVolume(); j++) {
 				sb.append("!");
 			}
 			System.out.println(getTitle() + sb.toString());
-			sb.setLength(0); // Resetta la StringBuilder
+			sb.setLength(0);
 		}
 	}
 }
